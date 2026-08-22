@@ -1,0 +1,201 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Api\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D6064A32-183E-466C-8D86-8464CB7FBC8A}|..\\ElectroStock.Domain\\ElectroStock.Domain.csproj|c:\\users\\j.ahmed\\source\\repos\\c#\\electrostock\\src\\electrostock.domain\\models\\stockmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6064A32-183E-466C-8D86-8464CB7FBC8A}|..\\ElectroStock.Domain\\ElectroStock.Domain.csproj|c:\\users\\j.ahmed\\source\\repos\\c#\\electrostock\\src\\electrostock.domain\\models\\serializedproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6064A32-183E-466C-8D86-8464CB7FBC8A}|..\\ElectroStock.Domain\\ElectroStock.Domain.csproj|c:\\users\\j.ahmed\\source\\repos\\c#\\electrostock\\src\\electrostock.domain\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6064A32-183E-466C-8D86-8464CB7FBC8A}|..\\ElectroStock.Domain\\ElectroStock.Domain.csproj|c:\\users\\j.ahmed\\source\\repos\\c#\\electrostock\\src\\electrostock.domain\\models\\quantifiedproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6064A32-183E-466C-8D86-8464CB7FBC8A}|..\\ElectroStock.Domain\\ElectroStock.Domain.csproj|c:\\users\\j.ahmed\\source\\repos\\c#\\electrostock\\src\\electrostock.domain\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6064A32-183E-466C-8D86-8464CB7FBC8A}|..\\ElectroStock.Domain\\ElectroStock.Domain.csproj|c:\\users\\j.ahmed\\source\\repos\\c#\\electrostock\\src\\electrostock.domain\\models\\guestuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6064A32-183E-466C-8D86-8464CB7FBC8A}|..\\ElectroStock.Domain\\ElectroStock.Domain.csproj|c:\\users\\j.ahmed\\source\\repos\\c#\\electrostock\\src\\electrostock.domain\\models\\invoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6064A32-183E-466C-8D86-8464CB7FBC8A}|..\\ElectroStock.Domain\\ElectroStock.Domain.csproj|c:\\users\\j.ahmed\\source\\repos\\c#\\electrostock\\src\\electrostock.domain\\models\\auditlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6064A32-183E-466C-8D86-8464CB7FBC8A}|..\\ElectroStock.Domain\\ElectroStock.Domain.csproj|c:\\users\\j.ahmed\\source\\repos\\c#\\electrostock\\src\\electrostock.domain\\electrostock.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{66E1F7E3-49E2-4DB2-8F85-8F345DCB42C0}|..\\ElectroStock.Application\\ElectroStock.Application.csproj|c:\\users\\j.ahmed\\source\\repos\\c#\\electrostock\\src\\electrostock.application\\dtos\\addinvoiceitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 55,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StockMovement.cs",
+              "DocumentMoniker": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\Models\\StockMovement.cs",
+              "RelativeDocumentMoniker": "..\\ElectroStock.Domain\\Models\\StockMovement.cs",
+              "ToolTip": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\Models\\StockMovement.cs",
+              "RelativeToolTip": "..\\ElectroStock.Domain\\Models\\StockMovement.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-22T23:07:13.612Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SerializedProduct.cs",
+              "DocumentMoniker": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\Models\\SerializedProduct.cs",
+              "RelativeDocumentMoniker": "..\\ElectroStock.Domain\\Models\\SerializedProduct.cs",
+              "ToolTip": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\Models\\SerializedProduct.cs",
+              "RelativeToolTip": "..\\ElectroStock.Domain\\Models\\SerializedProduct.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-22T23:07:13.025Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Reservation.cs",
+              "DocumentMoniker": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\Models\\Reservation.cs",
+              "RelativeDocumentMoniker": "..\\ElectroStock.Domain\\Models\\Reservation.cs",
+              "ToolTip": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\Models\\Reservation.cs",
+              "RelativeToolTip": "..\\ElectroStock.Domain\\Models\\Reservation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-22T23:07:12.438Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "QuantifiedProduct.cs",
+              "DocumentMoniker": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\Models\\QuantifiedProduct.cs",
+              "RelativeDocumentMoniker": "..\\ElectroStock.Domain\\Models\\QuantifiedProduct.cs",
+              "ToolTip": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\Models\\QuantifiedProduct.cs",
+              "RelativeToolTip": "..\\ElectroStock.Domain\\Models\\QuantifiedProduct.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-22T23:07:11.915Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "..\\ElectroStock.Domain\\Models\\Product.cs",
+              "ToolTip": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\Models\\Product.cs",
+              "RelativeToolTip": "..\\ElectroStock.Domain\\Models\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-22T23:07:10.952Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GuestUser.cs",
+              "DocumentMoniker": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\Models\\GuestUser.cs",
+              "RelativeDocumentMoniker": "..\\ElectroStock.Domain\\Models\\GuestUser.cs",
+              "ToolTip": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\Models\\GuestUser.cs",
+              "RelativeToolTip": "..\\ElectroStock.Domain\\Models\\GuestUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-22T23:07:09.505Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Invoice.cs",
+              "DocumentMoniker": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\Models\\Invoice.cs",
+              "RelativeDocumentMoniker": "..\\ElectroStock.Domain\\Models\\Invoice.cs",
+              "ToolTip": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\Models\\Invoice.cs",
+              "RelativeToolTip": "..\\ElectroStock.Domain\\Models\\Invoice.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-22T23:07:04.306Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AuditLog.cs",
+              "DocumentMoniker": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\Models\\AuditLog.cs",
+              "RelativeDocumentMoniker": "..\\ElectroStock.Domain\\Models\\AuditLog.cs",
+              "ToolTip": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\Models\\AuditLog.cs",
+              "RelativeToolTip": "..\\ElectroStock.Domain\\Models\\AuditLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-22T23:07:03.731Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ElectroStock.Domain.csproj",
+              "DocumentMoniker": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\ElectroStock.Domain.csproj",
+              "RelativeDocumentMoniker": "..\\ElectroStock.Domain\\ElectroStock.Domain.csproj",
+              "ToolTip": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Domain\\ElectroStock.Domain.csproj",
+              "RelativeToolTip": "..\\ElectroStock.Domain\\ElectroStock.Domain.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-08-22T23:06:56.955Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AddInvoiceItemDto.cs",
+              "DocumentMoniker": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Application\\Dtos\\AddInvoiceItemDto.cs",
+              "RelativeDocumentMoniker": "..\\ElectroStock.Application\\Dtos\\AddInvoiceItemDto.cs",
+              "ToolTip": "C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\src\\ElectroStock.Application\\Dtos\\AddInvoiceItemDto.cs",
+              "RelativeToolTip": "..\\ElectroStock.Application\\Dtos\\AddInvoiceItemDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-22T23:06:49.254Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 345,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

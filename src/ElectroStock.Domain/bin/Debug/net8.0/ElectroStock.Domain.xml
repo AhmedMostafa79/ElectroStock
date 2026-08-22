@@ -1,0 +1,244 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ElectroStock.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:ElectroStock.Domain.Interfaces.Repositories.IAuditLogRepository">
+            <summary>
+            Defines persistence and query operations for audit trail entries.
+            </summary>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IAuditLogRepository.AddAsync(ElectroStock.Domain.Models.AuditLog,System.Boolean)">
+            <summary>
+            Adds an audit log entry, optionally attaching it to the current business transaction context.
+            </summary>
+            <param name="auditLog">Audit log entry to persist.</param>
+            <param name="isBusinessContext">
+            <c>true</c> when the caller wants the audit entry to participate in an existing business transaction;
+            otherwise the log can be saved independently.
+            </param>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IAuditLogRepository.GetByUserAsync(System.Guid)">
+            <summary>
+            Retrieves audit logs created by a specific user.
+            </summary>
+            <param name="userId">User identifier.</param>
+            <returns>Audit entries associated with the user.</returns>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IAuditLogRepository.GetByActionAsync(ElectroStock.Domain.Enums.AuditLogType)">
+            <summary>
+            Retrieves audit logs filtered by action type.
+            </summary>
+            <param name="auditType">Audit action classification.</param>
+            <returns>Audit entries for the requested action type.</returns>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IAuditLogRepository.GetByDateRangeAsync(System.DateTime,System.DateTime)">
+            <summary>
+            Retrieves audit logs within the specified time interval.
+            </summary>
+            <param name="start">Inclusive range start.</param>
+            <param name="end">Inclusive range end.</param>
+            <returns>Audit entries in the requested date range.</returns>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IAuditLogRepository.GetAllAsync">
+            <summary>
+            Retrieves all audit logs.
+            </summary>
+            <returns>Complete audit trail entries.</returns>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IAuditLogRepository.SaveChangesAsyncAuditContext">
+            <summary>
+            Flushes pending audit log changes to the audit context.
+            </summary>
+            <returns>Number of persisted state entries.</returns>
+        </member>
+        <member name="T:ElectroStock.Domain.Interfaces.Repositories.IInvoiceRepository">
+            <summary>
+            Defines invoice-specific query operations in addition to generic repository behavior.
+            </summary>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IInvoiceRepository.GetByCustomerIdAsync(System.Guid)">
+            <summary>
+            Retrieves all invoices belonging to a customer.
+            </summary>
+            <param name="customerId">Customer identifier.</param>
+            <returns>Invoices associated with the customer.</returns>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IInvoiceRepository.GetByNumberAsync(System.String)">
+            <summary>
+            Retrieves an invoice by its business invoice number.
+            </summary>
+            <param name="invoiceNumber">Generated invoice number.</param>
+            <returns>The matching invoice, or <c>null</c> when not found.</returns>
+        </member>
+        <member name="T:ElectroStock.Domain.Interfaces.Repositories.IProductRepository">
+            <summary>
+            Defines product-specific query operations in addition to generic repository behavior.
+            </summary>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IProductRepository.GetByCategoryAsync(ElectroStock.Domain.Enums.ProductCategory)">
+            <summary>
+            Retrieves products by category.
+            </summary>
+            <param name="category">Product category filter.</param>
+            <returns>Products matching the requested category.</returns>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IProductRepository.GetBySkuAsync(System.String)">
+            <summary>
+            Retrieves products sharing the same SKU.
+            </summary>
+            <param name="sku">Stock keeping unit identifier.</param>
+            <returns>Products mapped to the supplied SKU.</returns>
+        </member>
+        <member name="T:ElectroStock.Domain.Interfaces.Repositories.IRepository`1">
+            <summary>
+            Defines the basic persistence operations shared across aggregate repositories.
+            </summary>
+            <typeparam name="T">Aggregate root entity type.</typeparam>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IRepository`1.AddAsync(`0)">
+            <summary>
+            Adds a new entity to the current persistence context.
+            </summary>
+            <param name="entity">Entity instance to add.</param>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IRepository`1.Update(`0)">
+            <summary>
+            Marks an existing entity as modified in the current persistence context.
+            </summary>
+            <param name="entity">Entity instance to update.</param>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IRepository`1.GetByIdAsync(System.Guid)">
+            <summary>
+            Retrieves an entity by its identifier.
+            </summary>
+            <param name="id">Entity identifier.</param>
+            <returns>The matching entity, or <c>null</c> when not found.</returns>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IRepository`1.GetAllAsync">
+            <summary>
+            Retrieves all entities of the repository type.
+            </summary>
+            <returns>All persisted entities for the type.</returns>
+        </member>
+        <member name="T:ElectroStock.Domain.Interfaces.Repositories.IReservationRepository">
+            <summary>
+            Defines reservation-specific query operations in addition to generic repository behavior.
+            </summary>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IReservationRepository.GetByProductAsync(System.Guid)">
+            <summary>
+            Retrieves reservations for a single product id.
+            </summary>
+            <param name="productId">Product identifier.</param>
+            <returns>Reservations linked to the product.</returns>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IReservationRepository.GetByNumberAsync(System.String)">
+            <summary>
+            Retrieves a reservation by its business reservation number.
+            </summary>
+            <param name="reservationNumber">Generated reservation number.</param>
+            <returns>The matching reservation, or <c>null</c> when not found.</returns>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IReservationRepository.GetByCustomerAsync(System.Guid)">
+            <summary>
+            Retrieves reservations belonging to a customer.
+            </summary>
+            <param name="customerId">Customer identifier.</param>
+            <returns>Reservations associated with the customer.</returns>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IReservationRepository.GetByProductIdsAsync(System.Collections.Generic.List{System.Guid})">
+            <summary>
+            Retrieves reservations for a set of product ids.
+            </summary>
+            <param name="productIds">Product identifiers to include in the query.</param>
+            <returns>Reservations mapped to any of the supplied product ids.</returns>
+        </member>
+        <member name="T:ElectroStock.Domain.Interfaces.Repositories.IStockMovementRepository">
+            <summary>
+            Defines persistence and query operations for stock movement history entries.
+            </summary>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IStockMovementRepository.AddAsync(ElectroStock.Domain.Models.StockMovement)">
+            <summary>
+            Adds a stock movement entry to the current persistence context.
+            </summary>
+            <param name="stockMovement">Stock movement entry to persist.</param>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IStockMovementRepository.GetByProductIdAsync(System.Guid)">
+            <summary>
+            Retrieves stock movements for a product.
+            </summary>
+            <param name="productId">Product identifier.</param>
+            <returns>Stock movement history entries for the product.</returns>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IStockMovementRepository.GetByDateRangeAsync(System.Guid,System.DateTime,System.DateTime)">
+            <summary>
+            Retrieves stock movements for a product within a date range.
+            </summary>
+            <param name="productId">Product identifier.</param>
+            <param name="start">Inclusive range start.</param>
+            <param name="end">Inclusive range end.</param>
+            <returns>Stock movement entries in the requested range.</returns>
+        </member>
+        <member name="T:ElectroStock.Domain.Interfaces.Repositories.IUserRepository">
+            <summary>
+            Defines user-specific lookup operations in addition to generic repository behavior.
+            </summary>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IUserRepository.GetByEmailAsync(System.String)">
+            <summary>
+            Retrieves a registered user by email.
+            </summary>
+            <param name="email">Email address used for lookup.</param>
+            <returns>The matching registered user, or <c>null</c> when not found.</returns>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IUserRepository.GetAllByRoleAsync(ElectroStock.Domain.Enums.UserRole)">
+            <summary>
+            Retrieves users filtered by role.
+            </summary>
+            <param name="role">Role filter.</param>
+            <returns>Users assigned to the requested role.</returns>
+        </member>
+        <member name="M:ElectroStock.Domain.Interfaces.Repositories.IUserRepository.GetByPhoneAsync(System.String)">
+            <summary>
+            Retrieves a user by phone number.
+            </summary>
+            <param name="phone">Phone number used for lookup.</param>
+            <returns>The matching user, or <c>null</c> when not found.</returns>
+        </member>
+        <member name="M:ElectroStock.Domain.Models.RegisteredUser.ValidateEmail(System.String)">
+            <summary>
+            Validates email format using Gmail-style regex pattern
+            </summary>
+            <param name="email">Email to validate</param>
+            <exception cref="T:System.ArgumentException">Thrown when email is invalid</exception>
+        </member>
+        <member name="M:ElectroStock.Domain.Models.User.ValidatePhoneNumber(System.String)">
+            <summary>
+            Validates phone number is exactly 11 digits
+            </summary>
+            <param name="phoneNumber">Phone number to validate</param>
+            <exception cref="T:System.ArgumentException">Thrown when phone number is invalid</exception>
+        </member>
+        <member name="T:ElectroStock.Application.Interfaces.Services.ISequenceCounterRepository">
+            <summary>
+            Provides sequence counter persistence operations used for business number generation.
+            </summary>
+        </member>
+        <member name="M:ElectroStock.Application.Interfaces.Services.ISequenceCounterRepository.GetOrCreateAsync(ElectroStock.Domain.Enums.CounterType)">
+            <summary>
+            Retrieves the counter for a type, creating an initial counter record when none exists.
+            </summary>
+            <param name="type">Counter type (for example, invoice or reservation).</param>
+            <returns>An existing or newly created sequence counter.</returns>
+        </member>
+        <member name="M:ElectroStock.Application.Interfaces.Services.ISequenceCounterRepository.Update(ElectroStock.Domain.Models.SequenceCounter)">
+            <summary>
+            Marks a sequence counter as modified in the current persistence context.
+            </summary>
+            <param name="counter">Counter entity to update.</param>
+        </member>
+    </members>
+</doc>

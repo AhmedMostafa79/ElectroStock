@@ -1,0 +1,2972 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ElectroStock API",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Admin/staff-creation": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Creates a new staff user account.",
+        "description": "Creates a new staff member (Cashier, Warehouse) with the provided registration details.\r\nOnly users with Admin role are authorized to perform this action.\r\n\r\nSample request:\r\nPOST /api/admin/staff-creation\r\nAuthorization: Bearer {admin-token}\r\nContent-Type: application/json\r\n\r\n{\r\n  \"email\": \"cashier@electrostock.com\",\r\n  \"password\": \"SecurePass123!\",\r\n  \"firstName\": \"Jane\",\r\n  \"lastName\": \"Doe\",\r\n  \"phoneNumber\": \"01234567890\",\r\n  \"dateOfBirth\": \"1995-05-15\",\r\n  \"userRole\": \"Cashier\"\r\n}",
+        "requestBody": {
+          "description": "Staff member registration details (Email, Password, FirstName, LastName, PhoneNumber, DateOfBirth, UserRole)",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUserDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUserDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Admin/activation/{userEmail}": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Activates a user account by email address.",
+        "description": "Sets the user's account status to Active, allowing them to log in.\r\nOnly users with Admin role are authorized to perform this action.\r\n\r\nSample request:\r\nPOST /api/admin/activation/john.doe@example.com\r\nAuthorization: Bearer {admin-token}",
+        "parameters": [
+          {
+            "name": "userEmail",
+            "in": "path",
+            "description": "The email address of the user to activate",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Admin/deactivation/{userEmail}": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Deactivates a user account by email address.",
+        "description": "Sets the user's account status to Inactive, preventing them from logging in.\r\nOnly users with Admin role are authorized to perform this action.\r\n\r\nSample request:\r\nPOST /api/admin/deactivation/john.doe@example.com\r\nAuthorization: Bearer {admin-token}",
+        "parameters": [
+          {
+            "name": "userEmail",
+            "in": "path",
+            "description": "The email address of the user to deactivate",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Admin/by-id/{userId}": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Retrieves a user by their unique identifier.",
+        "description": "Gets detailed information about a specific user using their GUID.\r\nOnly users with Admin role are authorized to perform this action.\r\n\r\nSample request:\r\nGET /api/admin/by-id/3fa85f64-5717-4562-b3fc-2c963f66afa6\r\nAuthorization: Bearer {admin-token}",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The unique identifier (GUID) of the user to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Admin/by-email/{email}": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Retrieves a user by their email address.",
+        "description": "Gets detailed information about a specific user using their email.\r\nOnly users with Admin role are authorized to perform this action.\r\n\r\nSample request:\r\nGET /api/admin/by-email/john.doe@example.com\r\nAuthorization: Bearer {admin-token}",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "The email address of the user to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Admin/by-phone/{phone}": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Retrieves a user by their phone number.",
+        "description": "Gets detailed information about a specific user using their phone number.\r\nOnly users with Admin role are authorized to perform this action.\r\n\r\nSample request:\r\nGET /api/admin/by-phone/01234567890\r\nAuthorization: Bearer {admin-token}",
+        "parameters": [
+          {
+            "name": "phone",
+            "in": "path",
+            "description": "The phone number of the user to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Admin/users/by-role": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Retrieves all users with a specific role.",
+        "description": "Gets a list of all users belonging to a specific role (Customer, Cashier, Warehouse, Admin).\r\nOnly users with Admin role are authorized to perform this action.\r\n\r\nSample request:\r\nGET /api/admin/users/by-role?role=Cashier\r\nAuthorization: Bearer {admin-token}",
+        "parameters": [
+          {
+            "name": "role",
+            "in": "query",
+            "description": "The user role to filter by (Customer, Cashier, Warehouse, Admin)",
+            "schema": {
+              "$ref": "#/components/schemas/UserRole"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Admin/users": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Retrieves all users in the system.",
+        "description": "Gets a complete list of all users regardless of role.\r\nOnly users with Admin role are authorized to perform this action.\r\n\r\nSample request:\r\nGET /api/admin/users\r\nAuthorization: Bearer {admin-token}",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Authentication/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Authenticates a user and returns a JWT access token.",
+        "description": "Validates user credentials (email/phone + password) and returns a JWT token\r\nfor subsequent authenticated API requests. The token includes user role claims\r\nfor authorization purposes.\r\n\r\nSample request:\r\nPOST /api/authentication/login\r\nContent-Type: application/json\r\n\r\n{\r\n  \"identifier\": \"admin@electrostock.com\",\r\n  \"password\": \"Admin123!\"\r\n}",
+        "requestBody": {
+          "description": "The login credentials containing email and password",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthRequestModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthRequestModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthRequestModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponseModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponseModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponseModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoices": {
+      "post": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Creates a new invoice.",
+        "description": "Creates a new completed invoice with the specified items.\r\nCashiers and Admins are authorized to perform this action.\r\n\r\nSample request:\r\nPOST /api/invoices\r\nAuthorization: Bearer {token}\r\nContent-Type: application/json\r\n\r\n{\r\n  \"customerId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"orderSource\": \"InStore\",\r\n  \"paymentMethod\": \"Cash\",\r\n  \"items\": [\r\n    {\r\n      \"productId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n      \"quantity\": 2,\r\n      \"serialNumber\": null\r\n    }\r\n  ]\r\n}",
+        "requestBody": {
+          "description": "The invoice creation details including customer, items, and payment method",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvoiceDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvoiceDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvoiceDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Invoices/{invoiceNumber}": {
+      "get": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Retrieves an invoice by its invoice number.",
+        "description": "Gets detailed information about a specific invoice including all items and totals.\r\nCashiers and Admins are authorized to perform this action.\r\n\r\nSample request:\r\nGET /api/invoices/INV-20250724-0001\r\nAuthorization: Bearer {token}",
+        "parameters": [
+          {
+            "name": "invoiceNumber",
+            "in": "path",
+            "description": "The unique invoice number (e.g., INV-20250724-0001)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Invoices/customer/{customerId}": {
+      "get": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Retrieves all invoices for a specific customer.",
+        "description": "Gets a list of all invoices belonging to a customer, ordered by creation date.\r\nCashiers and Admins are authorized to perform this action.\r\n\r\nSample request:\r\nGET /api/invoices/customer/3fa85f64-5717-4562-b3fc-2c963f66afa6\r\nAuthorization: Bearer {token}",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "The unique identifier (GUID) of the customer",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvoiceDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvoiceDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvoiceDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Invoices/{invoiceNumber}/items/{productId}": {
+      "patch": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Removes an item from a pending invoice.",
+        "description": "Removes a specific product from the invoice and refunds the sold stock back to inventory.\r\nOnly pending invoices can be modified. \r\nCashiers and Admins are authorized to perform this action.\r\n\r\nSample request:\r\nPATCH /api/invoices/INV-20250724-0001/items/3fa85f64-5717-4562-b3fc-2c963f66afa6\r\nAuthorization: Bearer {token}",
+        "parameters": [
+          {
+            "name": "invoiceNumber",
+            "in": "path",
+            "description": "The invoice number of the pending invoice",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "The unique identifier of the product to remove",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Invoices/{invoiceNumber}/cancel": {
+      "post": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Cancels a completed invoice.",
+        "description": "Cancels a complete invoice, refunding all sold stock back to inventory.\r\nCashiers and Admins are authorized to perform this action.\r\n\r\nSample request:\r\nPOST /api/invoices/INV-20250724-0001/cancel\r\nAuthorization: Bearer {token}",
+        "parameters": [
+          {
+            "name": "invoiceNumber",
+            "in": "path",
+            "description": "The invoice number of the completed invoice to cancel",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Product/quantified": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Creates a new quantified product (e.g., accessories, cables, chargers).",
+        "description": "Creates a new quantified product with stock quantity tracking. Quantified products\r\nare tracked by quantity (e.g., 100 units of USB-C cables) rather than individual serial numbers.\r\nOnly users with Admin role are authorized to perform this action.\r\n\r\nSample request:\r\nPOST /api/product/quantified\r\nAuthorization: Bearer {admin-token}\r\nContent-Type: application/json\r\n\r\n{\r\n  \"sku\": \"CBL-USBC-001\",\r\n  \"brand\": \"Anker\",\r\n  \"name\": \"USB-C Fast Charging Cable\",\r\n  \"category\": \"Accessories\",\r\n  \"model\": \"A1234\",\r\n  \"unitCost\": 8.50,\r\n  \"unitPrice\": 19.99,\r\n  \"initialQuantity\": 100,\r\n  \"minimumStockLevel\": 20\r\n}",
+        "requestBody": {
+          "description": "The product creation details (SKU, brand, name, category, model, costs, initial quantity, minimum stock level)",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateQuantifiedProductDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateQuantifiedProductDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateQuantifiedProductDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Product/{productId}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Retrieves a product by its unique identifier.",
+        "description": "Gets detailed information about a specific product including its type (quantified or serialized)\r\nand current stock status.\r\nUsers with Admin, Warehouse, or Cashier roles are authorized to perform this action.\r\n\r\nSample request:\r\nGET /api/product/3fa85f64-5717-4562-b3fc-2c963f66afa6\r\nAuthorization: Bearer {token}",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "The unique identifier (GUID) of the product to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Product/sku/{sku}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Retrieves products by SKU (Stock Keeping Unit).",
+        "description": "Gets a list of products matching the provided SKU (exact match). Since SKU is typically unique,\r\nthis usually returns a single product if quantified product, a list of products if serialized product.\r\nUsers with Admin, Warehouse, or Cashier roles are authorized to perform this action.\r\n\r\nSample request:\r\nGET /api/product/sku/CBL-USBC-001\r\nAuthorization: Bearer {token}",
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "path",
+            "description": "The unique SKU code of the product to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Product/category/{category}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Retrieves all products in a specific category.",
+        "description": "Gets a list of all products belonging to the specified product category.\r\nUsers with Admin, Warehouse, or Cashier roles are authorized to perform this action.\r\n\r\nSample request:\r\nGET /api/product/category/Smartphone\r\nAuthorization: Bearer {token}",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "description": "The product category (e.g., Smartphone, Accessory, Tablet, Laptop)",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ProductCategory"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Product": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Retrieves all products in the inventory system.",
+        "description": "Gets a complete list of all products regardless of category or type.\r\nUsers with Admin, Warehouse, or Cashier roles are authorized to perform this action.\r\n\r\nSample request:\r\nGET /api/product\r\nAuthorization: Bearer {token}",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Product/{sku}/price": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Updates the selling price for all products with the specified SKU.",
+        "description": "Changes the unit price (selling price) for all products matching the provided SKU.\r\nThis affects future sales only. Historical invoice data remains unchanged.\r\nOnly users with Admin role are authorized to perform this action.\r\n\r\nSample request:\r\nPOST /api/product/CBL-USBC-001/price?price=24.99\r\nAuthorization: Bearer {admin-token}",
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "path",
+            "description": "The SKU of the product(s) to update",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "price",
+            "in": "query",
+            "description": "The new selling price (must be greater than or equal to unit cost)",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Product/{sku}/cost": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Updates the cost price for all products with the specified SKU.",
+        "description": "Changes the unit cost (purchase price) for all products matching the provided SKU.\r\nOnly users with Admin role are authorized to perform this action.\r\n\r\nSample request:\r\nPOST /api/product/CBL-USBC-001/cost?cost=9.50\r\nAuthorization: Bearer {admin-token}",
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "path",
+            "description": "The SKU of the product(s) to update",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cost",
+            "in": "query",
+            "description": "The new cost price (must be greater than zero)",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Product/{productId}/discontinue": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Discontinues a product.",
+        "description": "Marks a product as discontinued, making it unavailable for sale nor reservation.\r\nDiscontinued products remain in the system for historical purposes but cannot be added to new invoices.\r\nOnly users with Admin role are authorized to perform this action.\r\n\r\nSample request:\r\nPOST /api/product/3fa85f64-5717-4562-b3fc-2c963f66afa6/discontinue\r\nAuthorization: Bearer {admin-token}",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "The unique identifier of the product to discontinue",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Product/{productId}/publish": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Publishes a product, making it available for sale.",
+        "description": "Publishes a previously unpublished or discontinued product, making it available for sale.\r\nOnly users with Admin role are authorized to perform this action.\r\n\r\nSample request:\r\nPOST /api/product/3fa85f64-5717-4562-b3fc-2c963f66afa6/publish\r\nAuthorization: Bearer {admin-token}",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "The unique identifier of the product to publish",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Reservation": {
+      "post": {
+        "tags": [
+          "Reservation"
+        ],
+        "summary": "Creates a new reservation for a single product.",
+        "description": "Creates a new reservation for a customer, reserving stock for a single product (MVP design).\r\nStock is reserved but not yet deducted from inventory.\r\nCashiers and Admins are authorized to perform this action.\r\n\r\nSample request:\r\nPOST /api/reservation\r\nAuthorization: Bearer {token}\r\nContent-Type: application/json\r\n\r\n{\r\n  \"productId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"quantity\": 2,\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"phoneNumber\": \"01234567890\",\r\n  \"source\": \"InStore\"\r\n}",
+        "requestBody": {
+          "description": "The reservation creation details including product, quantity, and customer info",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReservationDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReservationDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReservationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservationDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservationDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservationDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Reservation/{reservationNumber}": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "summary": "Retrieves a reservation by its reservation number.",
+        "description": "Gets detailed information about a specific reservation including all items and status.\r\nCashiers and Admins are authorized to perform this action.\r\n\r\nSample request:\r\nGET /api/reservation/RES-20250724-0001\r\nAuthorization: Bearer {token}",
+        "parameters": [
+          {
+            "name": "reservationNumber",
+            "in": "path",
+            "description": "The unique reservation number (e.g., RES-20250724-0001)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservationDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservationDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservationDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Reservation"
+        ],
+        "summary": "Confirms a reservation and converts it to an invoice.",
+        "description": "Confirms a pending reservation, converting it to a confirmed invoice.\r\nStock is permanently deducted from inventory and the customer is charged.\r\nCashiers and Admins are authorized to perform this action.\r\n\r\nSample request:\r\nPATCH /api/reservation/RES-20250724-0001?method=Cash\r\nAuthorization: Bearer {token}",
+        "parameters": [
+          {
+            "name": "reservationNumber",
+            "in": "path",
+            "description": "The reservation number to confirm",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "method",
+            "in": "query",
+            "description": "The payment method (Cash, DebitCard)",
+            "schema": {
+              "$ref": "#/components/schemas/PaymentMethod"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservationDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservationDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservationDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Reservation/customer/{customerId}": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "summary": "Retrieves all reservations for a specific customer.",
+        "description": "Gets a list of all reservations belonging to a customer, ordered by creation date.\r\nCashiers and Admins are authorized to perform this action.\r\n\r\nSample request:\r\nGET /api/reservation/customer/3fa85f64-5717-4562-b3fc-2c963f66afa6\r\nAuthorization: Bearer {token}",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "The unique identifier (GUID) of the customer",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReservationDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReservationDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReservationDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Reservation/product/sku/{sku}": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "summary": "Retrieves all reservations for a specific product SKU.",
+        "description": "Gets a list of all reservations that include a specific product SKU.\r\nThis is useful for tracking which customers have reserved a particular product.\r\nCashiers and Admins are authorized to perform this action.\r\n\r\nSample request:\r\nGET /api/reservation/product/sku/CBL-USBC-001\r\nAuthorization: Bearer {token}",
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "path",
+            "description": "The SKU of the product to search for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReservationDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReservationDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReservationDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Reservation/{reservationNumber}/cancel": {
+      "post": {
+        "tags": [
+          "Reservation"
+        ],
+        "summary": "Cancels a pending reservation.",
+        "description": "Cancels a pending reservation, releasing all reserved stock back to inventory.\r\nOnly pending reservations can be cancelled.\r\nCashiers and Admins are authorized to perform this action.\r\n\r\nSample request:\r\nPOST /api/reservation/RES-20250724-0001/cancel\r\nAuthorization: Bearer {token}",
+        "parameters": [
+          {
+            "name": "reservationNumber",
+            "in": "path",
+            "description": "The reservation number to cancel",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservationDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservationDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservationDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Stock/{sku}/receive/serialized": {
+      "post": {
+        "tags": [
+          "Stock"
+        ],
+        "summary": "Receives a serialized product (creates product + adds serial numbers).",
+        "description": "For serialized products (e.g., smartphones, tablets), each unit is unique and tracked by serial number/IMEI.\r\nThis endpoint creates and receives the serialized product .\r\nOnly users with Warehouse or Admin roles are authorized to perform this action.\r\n\r\nSample request:\r\nPOST /api/stock/IPHONE-15-PRO/receive/serialized\r\nAuthorization: Bearer {token}\r\nContent-Type: application/json\r\n\r\n{\r\n  \"brand\": \"Apple\",\r\n  \"name\": \"iPhone 15 Pro\",\r\n  \"category\": \"Smartphone\",\r\n  \"model\": \"A2848\",\r\n  \"unitCost\": 850.00,\r\n  \"unitPrice\": 999.99,\r\n  \"serialNumber\": \"SN-1234567890\",\r\n  \"imei\": \"354123456789012\",\r\n  \"warrantyPeriod\": \"OneYear\"\r\n}",
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "path",
+            "description": "The SKU of the product to create/receive",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The product details including serial numbers",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSerializedProductDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSerializedProductDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSerializedProductDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Stock/{sku}/receive/quantified": {
+      "post": {
+        "tags": [
+          "Stock"
+        ],
+        "summary": "Receives stock for an existing quantified product.",
+        "description": "For quantified products (e.g., accessories, cables), adds bulk quantity to existing stock.\r\nThe product must already exist in the system (created via Admin).\r\nOnly users with Warehouse or Admin roles are authorized to perform this action.\r\n\r\nSample request:\r\nPOST /api/stock/CBL-USBC-001/receive/quantified?quantity=50\r\nAuthorization: Bearer {token}",
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "path",
+            "description": "The SKU of the product to receive stock for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quantity",
+            "in": "query",
+            "description": "The quantity to add to inventory (must be greater than zero)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StockDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StockDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StockDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Stock/{sku}/stock": {
+      "get": {
+        "tags": [
+          "Stock"
+        ],
+        "summary": "Retrieves current stock information for a product by SKU.",
+        "description": "Gets the current stock status including quantity on hand, reserved, and available.\r\nUsers with Warehouse or Admin roles are authorized to perform this action.\r\n\r\nSample request:\r\nGET /api/stock/CBL-USBC-001/stock\r\nAuthorization: Bearer {token}",
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "path",
+            "description": "The SKU of the product to check",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StockDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StockDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StockDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Stock/{productId}/movements": {
+      "get": {
+        "tags": [
+          "Stock"
+        ],
+        "summary": "Retrieves the complete stock movement history for a product.",
+        "description": "Gets all stock movements (receipts, sales, refunds) for a specific product.\r\nUseful for audit trails and inventory reconciliation.\r\nUsers with Warehouse or Admin roles are authorized to perform this action.\r\n\r\nSample request:\r\nGET /api/stock/3fa85f64-5717-4562-b3fc-2c963f66afa6/movements\r\nAuthorization: Bearer {token}",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "The unique identifier of the product",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StockDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StockDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StockDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/Stock/{productId}/movements/by-date": {
+      "get": {
+        "tags": [
+          "Stock"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StockDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StockDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StockDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/User/profile": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Retrieves the authenticated user's profile information.",
+        "description": "Gets detailed profile information for the currently authenticated user.\r\nAll authenticated users (any role) are authorized to perform this action.\r\n\r\nSample request:\r\nGET /api/user/profile\r\nAuthorization: Bearer {token}",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    },
+    "/api/User/change-password": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Changes the authenticated user's password.",
+        "description": "Updates the password for the currently authenticated user.\r\nRequires both old and new passwords. The new password must meet security requirements.\r\nAll authenticated users (any role) are authorized to perform this action.\r\n\r\nSample request:\r\nPUT /api/user/change-password\r\nAuthorization: Bearer {token}\r\nContent-Type: application/json\r\n\r\n{\r\n  \"oldPassword\": \"OldPass123!\",\r\n  \"newPassword\": \"NewSecurePass456!\"\r\n}",
+        "requestBody": {
+          "description": "The password change request containing old and new passwords",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The request lacks valid authentication credentials."
+          },
+          "403": {
+            "description": "Forbidden. The authenticated user does not have permission to access this resource."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AddInvoiceItemDto": {
+        "required": [
+          "invoiceNumber",
+          "productId",
+          "quantity"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "description": "Product being sold in this invoice item.",
+            "format": "uuid"
+          },
+          "invoiceNumber": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Optional invoice number, primarily used when adding an item to an existing invoice."
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "Quantity being sold for the product.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Single line item included in an invoice creation request."
+      },
+      "AuthRequestModel": {
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Registered user email address used for login."
+          },
+          "password": {
+            "minLength": 1,
+            "type": "string",
+            "description": "User password for authentication."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Login request used to authenticate a registered user and receive a JWT token."
+      },
+      "AuthResponseModel": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "User ID.",
+            "format": "uuid"
+          },
+          "message": {
+            "type": "string",
+            "description": "Authentication status message.",
+            "nullable": true
+          },
+          "isAuthenticated": {
+            "type": "boolean",
+            "description": "Indicates if authentication was successful."
+          },
+          "userName": {
+            "type": "string",
+            "description": "Authenticated user's username.",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/UserRole"
+          },
+          "token": {
+            "type": "string",
+            "description": "JWT token for authenticated session.",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "Authenticated user's email.",
+            "nullable": true
+          },
+          "expiresIn": {
+            "type": "string",
+            "description": "Token expiration timestamp.",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Authentication response model.\r\nContains authentication results and user session information."
+      },
+      "ChangePasswordRequest": {
+        "required": [
+          "newPassword",
+          "oldPassword"
+        ],
+        "type": "object",
+        "properties": {
+          "oldPassword": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "newPassword": {
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateInvoiceDto": {
+        "required": [
+          "firstName",
+          "items",
+          "lastName",
+          "orderSource",
+          "paymentMethod",
+          "phoneNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Customer first name used to create or resolve the guest customer record."
+          },
+          "lastName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Customer last name used to create or resolve the guest customer record."
+          },
+          "phoneNumber": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Customer phone number used to match or create the customer record."
+          },
+          "orderSource": {
+            "$ref": "#/components/schemas/RequestSource"
+          },
+          "paymentMethod": {
+            "$ref": "#/components/schemas/PaymentMethod"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddInvoiceItemDto"
+            },
+            "description": "One or more products being sold in this invoice."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Request payload used to create a new invoice for a customer.\r\nThe customer may be created automatically if they are not already registered."
+      },
+      "CreateQuantifiedProductDto": {
+        "required": [
+          "brand",
+          "category",
+          "minimumStockLevel",
+          "model",
+          "name",
+          "sku",
+          "unitCost",
+          "unitPrice"
+        ],
+        "type": "object",
+        "properties": {
+          "sku": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "brand": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/ProductCategory"
+          },
+          "model": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "unitCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "initialQuantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minimumStockLevel": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateReservationDto": {
+        "required": [
+          "firstName",
+          "lastName",
+          "phoneNumber",
+          "productId",
+          "quantity",
+          "source"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "description": "Product being reserved.",
+            "format": "uuid"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "Quantity requested to reserve.",
+            "format": "int32"
+          },
+          "firstName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Customer first name used to create or resolve the guest customer record."
+          },
+          "lastName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Customer last name used to create or resolve the guest customer record."
+          },
+          "phoneNumber": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Customer phone number used to match or create the guest customer record."
+          },
+          "source": {
+            "$ref": "#/components/schemas/RequestSource"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Request model for creating a reservation against a product."
+      },
+      "CreateSerializedProductDto": {
+        "required": [
+          "brand",
+          "category",
+          "imei",
+          "model",
+          "name",
+          "serialNumber",
+          "unitCost",
+          "unitPrice"
+        ],
+        "type": "object",
+        "properties": {
+          "brand": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/ProductCategory"
+          },
+          "model": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "unitCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "serialNumber": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "imei": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "warrantyPeriod": {
+            "$ref": "#/components/schemas/WarrantyPeriod"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceDto": {
+        "required": [
+          "createdAt",
+          "createdBy",
+          "paymentMethod"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Database identifier for the invoice.",
+            "format": "uuid"
+          },
+          "invoiceNumber": {
+            "type": "string",
+            "description": "Unique invoice number generated for the invoice.",
+            "nullable": true
+          },
+          "customerId": {
+            "type": "string",
+            "description": "Customer id associated with the invoice.",
+            "format": "uuid"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceItem"
+            },
+            "description": "Line items included in the invoice.",
+            "nullable": true
+          },
+          "totalPrice": {
+            "type": "number",
+            "description": "Total value of the invoice.",
+            "format": "double"
+          },
+          "orderSource": {
+            "$ref": "#/components/schemas/RequestSource"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "User responsible for creating the invoice.",
+            "format": "uuid"
+          },
+          "paymentMethod": {
+            "$ref": "#/components/schemas/PaymentMethod"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Date and time when the invoice was created.",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Response model returned after invoice creation or retrieval.\r\nIt represents the invoice and its line items for the client."
+      },
+      "InvoiceItem": {
+        "required": [
+          "productId",
+          "quantity",
+          "unitPrice"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "quantity": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PaymentMethod": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "ProductCategory": {
+        "enum": [
+          0,
+          1,
+          2,
+          10,
+          11,
+          12,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ProductDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sku": {
+            "type": "string",
+            "nullable": true
+          },
+          "brand": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "$ref": "#/components/schemas/ProductCategory"
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "productType": {
+            "$ref": "#/components/schemas/ProductType"
+          },
+          "productStatus": {
+            "$ref": "#/components/schemas/ProductStatus"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "serialNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "imei": {
+            "type": "string",
+            "nullable": true
+          },
+          "warrantyPeriod": {
+            "$ref": "#/components/schemas/WarrantyPeriod"
+          },
+          "soldDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "quantityOnHand": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "quantityReserved": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "minimumStockLevel": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "availableQuantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductStatus": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ProductType": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "RegisterUserDto": {
+        "required": [
+          "email",
+          "firstName",
+          "lastName",
+          "password",
+          "phoneNumber",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "First name of the new user."
+          },
+          "lastName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Last name of the new user."
+          },
+          "phoneNumber": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Mobile number used as the primary contact and account identifier."
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Unique email address of the user."
+          },
+          "password": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Plain-text password that will be securely hashed before persistence."
+          },
+          "role": {
+            "$ref": "#/components/schemas/UserRole"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Request payload used to register a new user account."
+      },
+      "RequestSource": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ReservationDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Database identifier of the reservation.",
+            "format": "uuid"
+          },
+          "reservationNumber": {
+            "type": "string",
+            "description": "Unique reservation number assigned to this reservation.",
+            "nullable": true
+          },
+          "productId": {
+            "type": "string",
+            "description": "Product reserved by the customer.",
+            "format": "uuid"
+          },
+          "customerId": {
+            "type": "string",
+            "description": "Customer associated with the reservation.",
+            "format": "uuid"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "Quantity reserved.",
+            "format": "int32"
+          },
+          "unitPrice": {
+            "type": "number",
+            "description": "Unit price used for the reservation.",
+            "format": "double"
+          },
+          "totalPrice": {
+            "type": "number",
+            "description": "Total value for the reserved quantity.",
+            "format": "double"
+          },
+          "source": {
+            "$ref": "#/components/schemas/RequestSource"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ReservationStatus"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Timestamp when the reservation was created.",
+            "format": "date-time"
+          },
+          "expiresAt": {
+            "type": "string",
+            "description": "Expiration time after which the reservation should no longer be valid.",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Response model returned for reservation creation or retrieval.\r\nIt describes the reservation state and sale details."
+      },
+      "ReservationStatus": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "StockDto": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantityOnHand": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantityReserved": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantityAvailable": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique database identifier of the user.",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string",
+            "description": "User first name.",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "description": "User last name.",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "User phone number.",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "Email address for registered users; may be null for guest accounts.",
+            "nullable": true
+          },
+          "userStatus": {
+            "$ref": "#/components/schemas/UserStatus"
+          },
+          "role": {
+            "$ref": "#/components/schemas/UserRole"
+          },
+          "userType": {
+            "$ref": "#/components/schemas/UserType"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Timestamp when the user account was created.",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Response model containing the public profile and role information for a user."
+      },
+      "UserRole": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "UserStatus": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "UserType": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "WarrantyPeriod": {
+        "enum": [
+          0,
+          3,
+          6,
+          12,
+          24
+        ],
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "Admin",
+      "description": "Handles administrative operations including user management, activation, and role-based administration."
+    },
+    {
+      "name": "Authentication",
+      "description": "Handles authentication and user session management."
+    },
+    {
+      "name": "Invoices",
+      "description": "Handles invoice-related operations including creation, retrieval, and management."
+    },
+    {
+      "name": "Product",
+      "description": "Handles product-related operations including creation, retrieval, and management."
+    },
+    {
+      "name": "Reservation",
+      "description": "Handles reservation-related operations including creation, retrieval, confirmation, and cancellation."
+    },
+    {
+      "name": "Stock",
+      "description": "Handles stock-related operations including receiving, tracking, and inventory management."
+    },
+    {
+      "name": "User",
+      "description": "Handles user profile and account management operations."
+    }
+  ]
+}

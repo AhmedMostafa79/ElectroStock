@@ -1,0 +1,185 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/25.0.2 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="25.0.2">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="1487" dy="1890" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="LKzoNF1gtvxDeAqBTlG0-239" value="ReservationsController" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry y="-560" width="240" height="380" as="geometry">
+            <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X-EGSlo1tltLjLJe3oCu-2" value="- _reservationService: IReservationService" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="LKzoNF1gtvxDeAqBTlG0-239" vertex="1">
+          <mxGeometry y="40" width="240" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="LKzoNF1gtvxDeAqBTlG0-242" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="LKzoNF1gtvxDeAqBTlG0-239" vertex="1">
+          <mxGeometry y="66" width="240" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="LKzoNF1gtvxDeAqBTlG0-243" value="+ CashierController(IInvoiceService, IReservationService,&#xa;IProductService" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="LKzoNF1gtvxDeAqBTlG0-239" vertex="1">
+          <mxGeometry y="74" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-22" value="+ CreateReservationAsync(productId: Guid,&#xa;CreateReservationDto ):Task&lt;IActionResult&lt;ReservationDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="LKzoNF1gtvxDeAqBTlG0-239" vertex="1">
+          <mxGeometry y="104" width="240" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-25" value="+ GetReservationByNumberAsync(&#xa;reservationNum ):Task&lt;IActionResult&lt;ReservationDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="LKzoNF1gtvxDeAqBTlG0-239" vertex="1">
+          <mxGeometry y="138" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-26" value="+ GetReservationByCustomerAsync(&#xa;reservationNum: string ):&#xa;Task&lt;IActionResult&lt;IEnumerable&lt;ReservationDto&gt;&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="LKzoNF1gtvxDeAqBTlG0-239" vertex="1">
+          <mxGeometry y="178" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-40" value="+ GetReservationByProductAsync(&#xa;productId: Guid):&#xa;Task&lt;IActionResult&lt;IEnumerable&lt;ReservationDto&gt;&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="LKzoNF1gtvxDeAqBTlG0-239" vertex="1">
+          <mxGeometry y="228" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-41" value="+ CofirmReservationAsync(&#xa;reservationNumber: string):&#xa;Task&lt;IActionResult&lt;ReservationDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="LKzoNF1gtvxDeAqBTlG0-239" vertex="1">
+          <mxGeometry y="278" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-42" value="+ CancelReservationAsync(&#xa;reservationNumber: string):&#xa;Task&lt;IActionResult&lt;ReservationDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="LKzoNF1gtvxDeAqBTlG0-239" vertex="1">
+          <mxGeometry y="328" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-0" value="AdminController" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="380" y="-510" width="240" height="410" as="geometry">
+            <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-75" value="- _userService: IUserService" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="TkW0hgWrNuZdskZ3p4dH-0" vertex="1">
+          <mxGeometry y="40" width="240" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-1" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="TkW0hgWrNuZdskZ3p4dH-0" vertex="1">
+          <mxGeometry y="74" width="240" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-79" value="+ AdminController(IUserService):" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="TkW0hgWrNuZdskZ3p4dH-0" vertex="1">
+          <mxGeometry y="82" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-2" value="+ CreateStaffUserAsync(RegisterUserDto): &#xa;    Task&lt;IActionResult&lt;UserDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="TkW0hgWrNuZdskZ3p4dH-0" vertex="1">
+          <mxGeometry y="112" width="240" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-3" value="+ ActivateUserAsync(userId: Guid):&#xa;                                    Task&lt;IActionResult&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="TkW0hgWrNuZdskZ3p4dH-0" vertex="1">
+          <mxGeometry y="144" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-4" value="+ DeactivateUser(userId: Guid):        &#xa;                                    Task&lt;IActionResult&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="TkW0hgWrNuZdskZ3p4dH-0" vertex="1">
+          <mxGeometry y="184" width="240" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-5" value="+ GetUserById(userId: Guid):&#xa;                Task&lt;IActionResult&lt;UserDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="TkW0hgWrNuZdskZ3p4dH-0" vertex="1">
+          <mxGeometry y="210" width="240" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-6" value="+ GetUserByEmailAsync(email: string):     &#xa;                Task&lt;IActionResult&lt;UserDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="TkW0hgWrNuZdskZ3p4dH-0" vertex="1">
+          <mxGeometry y="244" width="240" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-48" value="+ GetUserByPhoneAsync(phone: string):     &#xa;                Task&lt;IActionResult&lt;UserDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="TkW0hgWrNuZdskZ3p4dH-0" vertex="1">
+          <mxGeometry y="282" width="240" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-49" value="+ GetAllUsersByRoleAsync():&#xa;Task&lt;IActionResult&lt;IEnumerable&lt;UserDto&gt;&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="TkW0hgWrNuZdskZ3p4dH-0" vertex="1">
+          <mxGeometry y="314" width="240" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-7" value="+ GetAllUsers():&#xa;Task&lt;IActionResult&lt;IEnumerable&lt;UserDto&gt;&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="TkW0hgWrNuZdskZ3p4dH-0" vertex="1">
+          <mxGeometry y="350" width="240" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-9" value="+ DeleteUser(phone: string): Task&lt;IActionResult&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="TkW0hgWrNuZdskZ3p4dH-0" vertex="1">
+          <mxGeometry y="384" width="240" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-10" value="StockController" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="-694" y="30" width="280" height="280" as="geometry">
+            <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-9" value="- _stockService: IStockService" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="TkW0hgWrNuZdskZ3p4dH-10">
+          <mxGeometry y="40" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-11" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="TkW0hgWrNuZdskZ3p4dH-10" vertex="1">
+          <mxGeometry y="70" width="280" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-7" value="+ WarehouseController( IStockService):" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="TkW0hgWrNuZdskZ3p4dH-10">
+          <mxGeometry y="78" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-1" value="+ ReceiveSerializedProductAsync(CreateSerialiedProductDto): &#xa;Task&lt;IActionResult&lt;ProductDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="TkW0hgWrNuZdskZ3p4dH-10">
+          <mxGeometry y="108" width="280" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-12" value="+ ReceiveQuantifiedProductAsync(string sku, unitCost,quantity): &#xa;Task&lt;IActionResult&lt;ProductDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="TkW0hgWrNuZdskZ3p4dH-10" vertex="1">
+          <mxGeometry y="140" width="280" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-82" value="+ GetCurrentStockAsync(productId: Guid): &#xa;Task&lt;IActionResult&lt;StockDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="TkW0hgWrNuZdskZ3p4dH-10" vertex="1">
+          <mxGeometry y="172" width="280" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-2" value="+ GetStockMovementHistoryAsync(productId: Guid): &#xa;Task&lt;IActionResult&lt;IEnumerable&lt;StockDto&gt;&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="TkW0hgWrNuZdskZ3p4dH-10">
+          <mxGeometry y="204" width="280" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-3" value="+ GetStockMovementByDateRangeAsync(productId, start, end): &#xa;Task&lt;IActionResult&lt;IEnumerable&lt;StockDto&gt;&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="TkW0hgWrNuZdskZ3p4dH-10">
+          <mxGeometry y="236" width="280" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-13" value="ProductsController" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-320" y="30" width="390" height="442" as="geometry">
+            <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-5" value="- _productService: IProductService" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-13">
+          <mxGeometry y="40" width="390" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-15" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-13">
+          <mxGeometry y="70" width="390" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-16" value="+ ProductsController(IProductService):" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-13">
+          <mxGeometry y="78" width="390" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-11" value="+ CreateQuantifiedProductAsync(CreateQuantifiedProductDto): &#xa;Task&lt;IActionResult&lt;ProductDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-13">
+          <mxGeometry y="108" width="390" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-38" value="+ GetProductByCategory(category: string):&#xa;Task&lt;IActionResult&lt;ProductDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-13">
+          <mxGeometry y="140" width="390" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-46" value="+ GetProductBySku(sku: string):&#xa;Task&lt;IActionResult&lt;ProductDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="S2Vw0OORobodrkfa-gp2-13" vertex="1">
+          <mxGeometry y="182" width="390" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-36" value="+ GetProductById(id: Guid):&#xa;Task&lt;IActionResult&lt;ProductDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-13">
+          <mxGeometry y="224" width="390" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TkW0hgWrNuZdskZ3p4dH-47" value="+ GetAllProductsAsync()&#xa;Task&lt;IActionResult&lt;IEnumerable&lt;ProductDto&gt;&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="S2Vw0OORobodrkfa-gp2-13" vertex="1">
+          <mxGeometry y="264" width="390" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-39" value="+ SearchProducts(Search):&#xa;Task&lt;IActionResult&lt;ProductDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-13">
+          <mxGeometry y="304" width="390" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-40" value="+ UpdateProduct(UpdateProductDto): &#xa;Task&lt;IActionResult&lt;ProductDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-13">
+          <mxGeometry y="346" width="390" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-12" value="+ ChangeProductPriceAsync(productId): &#xa;Task&lt;IActionResult&lt;ProductDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-13">
+          <mxGeometry y="378" width="390" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-37" value="+ ChangeProductStatusAsync(productId): &#xa;Task&lt;IActionResult&lt;ProductDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-13">
+          <mxGeometry y="410" width="390" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-26" value="InvoiceController" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-500" y="-560" width="390" height="280" as="geometry">
+            <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-27" value="- _invoiceService: IInvoiceService" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-26">
+          <mxGeometry y="40" width="390" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-28" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-26">
+          <mxGeometry y="74" width="390" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-29" value="+ InvoiceController(IInvoiceService):" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-26">
+          <mxGeometry y="82" width="390" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-30" value="+ CreateInvoiceAsync(CreateInvoiceDto): Task&lt;InvoiceDto&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-26">
+          <mxGeometry y="112" width="390" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-31" value="+ AddItemToInvoiceAsync(AddInvoiceItemDto):Task&lt;InvoiceDto&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-26">
+          <mxGeometry y="138" width="390" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-32" value="+ GetInvoiceByNumber(number: string): InvoiceDto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-26">
+          <mxGeometry y="164" width="390" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-33" value="+ RemoveItemFromInvoiceAsync(RemoveItemRequest):Task&lt;InvoiceDto&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-26">
+          <mxGeometry y="190" width="390" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-34" value="+ GetInvoiceByCustomerAsync(customerId: Guid): &#xa;Task&lt;IActionResult&lt;InvoiceDto&gt;&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-26">
+          <mxGeometry y="216" width="390" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="S2Vw0OORobodrkfa-gp2-35" value="+ CancelInvoiceAsync(invoiceNumber: string): &#xa;            Task&lt;IActionResult&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S2Vw0OORobodrkfa-gp2-26">
+          <mxGeometry y="254" width="390" height="26" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

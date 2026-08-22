@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ElectroStock.Infrastructure</name>
+    </assembly>
+    <members>
+        <member name="T:ElectroStock.Infrastructure.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:ElectroStock.Infrastructure.Migrations.AddInvoiceStatusProperty">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.AddInvoiceStatusProperty.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.AddInvoiceStatusProperty.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.AddInvoiceStatusProperty.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:ElectroStock.Infrastructure.Migrations.AddSequenceCounterTable">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.AddSequenceCounterTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.AddSequenceCounterTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.AddSequenceCounterTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:ElectroStock.Infrastructure.Migrations.RemoveInvoiceCounter">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.RemoveInvoiceCounter.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.RemoveInvoiceCounter.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.RemoveInvoiceCounter.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:ElectroStock.Infrastructure.Migrations.ChangeReservationProperties">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.ChangeReservationProperties.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.ChangeReservationProperties.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.ChangeReservationProperties.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:ElectroStock.Infrastructure.Migrations.RemoveInvoiceItemsTable">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.RemoveInvoiceItemsTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.RemoveInvoiceItemsTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.RemoveInvoiceItemsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:ElectroStock.Infrastructure.Migrations.RemoveInvoiceItemTable">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.RemoveInvoiceItemTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.RemoveInvoiceItemTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.RemoveInvoiceItemTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:ElectroStock.Infrastructure.Migrations.StopIdGeneratorInSequenceCounter">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.StopIdGeneratorInSequenceCounter.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.StopIdGeneratorInSequenceCounter.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ElectroStock.Infrastructure.Migrations.StopIdGeneratorInSequenceCounter.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
