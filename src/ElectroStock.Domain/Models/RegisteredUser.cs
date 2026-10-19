@@ -30,9 +30,6 @@ namespace ElectroStock.Domain.Models
 
             ValidateEmail(email);
             Email =email;
-
-            
-
             ChangePassword(passwordHash);
             Status = UserStatus.Active;
 

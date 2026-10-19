@@ -30,8 +30,10 @@ namespace ElectroStock.Application.Services
             await _unitOfWork.BeginTransactionAsync();
             try
             {
-                var productData = productDto.ToCreationData();
+                if ((await _productRepo.GetBySkuAsync(productDto.Sku) ).Any())
+                    throw new InvalidOperationException($"Product with sku: {productDto.Sku} already exists!");
 
+                var productData = productDto.ToCreationData();
                 var product = new QuantifiedProduct(
                     productData: productData,
                     initialQuantity: 0,
@@ -214,7 +216,7 @@ namespace ElectroStock.Application.Services
             {
                 var products = await _productRepo.GetBySkuAsync(sku);
                 
-                if (!products.Any() == null)
+                if (!products.Any())
                     throw new KeyNotFoundException($"Product with sku: {sku}, not found!");
 
                 foreach (var product in products)

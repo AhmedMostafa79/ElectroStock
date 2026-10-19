@@ -12,9 +12,9 @@ namespace ElectroStock.Domain.Models
 
         public SequenceCounter(CounterType counterType, DateOnly startDate)
         {
-            // id equals 1  as for each counterType there is only 1 record, 
+            // There is one counter record per CounterType.
             // so no stale records
-            Id = 1;
+            Id = (int)counterType;
             CounterType=counterType;
             CurrentDate = startDate;
             LastNumber = 0;

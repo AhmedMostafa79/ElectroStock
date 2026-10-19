@@ -45,7 +45,7 @@ namespace ElectroStock.API.Controllers
         ///   "sku": "CBL-USBC-001",
         ///   "brand": "Anker",
         ///   "name": "USB-C Fast Charging Cable",
-        ///   "category": "Accessories",
+        ///   "category": "Accessory",
         ///   "model": "A1234",
         ///   "unitCost": 8.50,
         ///   "unitPrice": 19.99,

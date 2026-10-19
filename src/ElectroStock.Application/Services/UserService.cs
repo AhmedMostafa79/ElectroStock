@@ -30,7 +30,9 @@ namespace ElectroStock.Application.Services
             await _unitOfWork.BeginTransactionAsync();
             try
             {
-                
+                if ((await _usersRepo.GetByEmailAsync(userDto.Email))!=null)
+                    throw new InvalidOperationException($"Error: email {userDto.Email} is already used!");
+
                 var user = new RegisteredUser(
                         data: userDto.ToCreationData(),
                         email:userDto.Email,

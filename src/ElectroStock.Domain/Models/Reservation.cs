@@ -81,9 +81,9 @@ namespace ElectroStock.Domain.Models
         }
         public void Expire()
         {
-            if (!IsActive())
-                throw new InvalidOperationException($"Can't expire reservation, current status: {Status}");
-
+            if (Status != ReservationStatus.Pending)
+        throw new InvalidOperationException(
+            $"Can't expire reservation, current status: {Status}");
             Status = ReservationStatus.Expired;
         }
         public void Cancel()
@@ -103,7 +103,11 @@ namespace ElectroStock.Domain.Models
 
             ExpirationInMinutes += minutes;
         }
-        private bool IsActive() => Status == ReservationStatus.Pending;
+        private bool IsActive()
+        {
+           return  DateTime.UtcNow<=ExpiresAt &&
+             Status == ReservationStatus.Pending;
+        } 
         public decimal TotalPrice() => Quantity * UnitPrice;
         private void SetExpirationTime(RequestSource source)
         {

@@ -40,16 +40,17 @@ namespace ElectroStock.API.Middleware
                 statusCode = StatusCodes.Status401Unauthorized;
                 title = exception.Message;
             }
-            else if (ExceptionHelper.IsBusinessException(exception))
-            {
-                statusCode = StatusCodes.Status400BadRequest;
-                title = exception.Message;
-            }
             else if (exception is KeyNotFoundException)
             {
                 statusCode = StatusCodes.Status404NotFound;
                 title = exception.Message;
             }
+            else if (ExceptionHelper.IsBusinessException(exception))
+            {
+                statusCode = StatusCodes.Status400BadRequest;
+                title = exception.Message;
+            }
+            
             context.Response.StatusCode = statusCode;
             context.Response.ContentType = "application/json";
 

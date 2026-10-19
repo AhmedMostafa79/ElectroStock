@@ -36,11 +36,12 @@ namespace ElectroStock.API.Controllers
         /// Only users with Warehouse or Admin roles are authorized to perform this action.
         /// 
         /// Sample request:
-        /// POST /api/stock/IPHONE-15-PRO/receive/serialized
+        /// POST /api/stock/IP15Pro-256-White/receive/serialized
         /// Authorization: Bearer {token}
         /// Content-Type: application/json
         /// 
         /// {
+        ///   "sku": "IPhone-15Pro256-White"
         ///   "brand": "Apple",
         ///   "name": "iPhone 15 Pro",
         ///   "category": "Smartphone",
@@ -48,7 +49,7 @@ namespace ElectroStock.API.Controllers
         ///   "unitCost": 850.00,
         ///   "unitPrice": 999.99,
         ///   "serialNumber": "SN-1234567890",
-        ///   "imei": "354123456789012",
+        ///   "imei": "446916895731114",
         ///   "warrantyPeriod": "OneYear"
         /// }
         /// </remarks>

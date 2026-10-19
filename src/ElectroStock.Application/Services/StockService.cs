@@ -362,9 +362,7 @@ namespace ElectroStock.Application.Services
                    
                     var serializedProducts = products.Cast<SerializedProduct>();
 
-                    var onHand = serializedProducts.Count(p =>
-                    p.Status == ProductStatus.Active ||
-                    p.Status == ProductStatus.Reserved);
+                    var onHand = serializedProducts.Count(p=>p.Status!=ProductStatus.SoldOut);
 
                     var reserved= serializedProducts.Count(p=>
                     p.Status == ProductStatus.Reserved);

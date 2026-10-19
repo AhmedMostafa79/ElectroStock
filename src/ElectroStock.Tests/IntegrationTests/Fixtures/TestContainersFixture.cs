@@ -122,9 +122,16 @@ namespace ElectroStock.Tests.IntegrationTests.Fixtures
 
             // Register REAL Helpers
             services.AddScoped<IPasswordHasher, BcryptPasswordHasher>();
+
+            // currently using in-memory configuration, later for CI/CD i'll use Environment variables
             var configuration = new ConfigurationBuilder()
-                .AddJsonFile("C:\\Users\\J.AHMED\\source\\repos\\C#\\ElectroStock\\appsettings.json") // or add in-memory config
-                .Build();
+        .AddInMemoryCollection(new Dictionary<string, string>
+        {
+            {"JWT:Issuer", "https://electrostock-test.com"},
+            {"JWT:Audience", "electrostock-test"},
+            {"JWT:Key", "N3c16Rdnj55VknnrlS46MndSTjn2mnNGFhQ32sKePDJK"}
+        })
+        .Build();
 
             services.Configure<JWT>(configuration.GetSection("JWT"));
             return services.BuildServiceProvider();

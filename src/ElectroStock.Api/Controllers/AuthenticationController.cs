@@ -30,7 +30,7 @@ namespace ElectroStock.API.Controllers
         /// Authenticates a user and returns a JWT access token.
         /// </summary>
         /// <remarks>
-        /// Validates user credentials (email/phone + password) and returns a JWT token
+        /// Validates user credentials (email + password) and returns a JWT token
         /// for subsequent authenticated API requests. The token includes user role claims
         /// for authorization purposes.
         /// 
@@ -40,7 +40,7 @@ namespace ElectroStock.API.Controllers
         /// 
         /// {
         ///   "identifier": "admin@electrostock.com",
-        ///   "password": "Admin123!"
+        ///   "password": "Admin547!"
         /// }
         /// 
         /// </remarks>

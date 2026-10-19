@@ -56,6 +56,7 @@ namespace ElectroStock.API.Controllers
         public async Task<ActionResult<UserDto>> CreateStaffUserAsync([FromBody] RegisterUserDto userDto)
         {
 
+
             var performedBy = CurrentUserHelper.GetCurrentUserId(User);
 
                 var user = await _userService.CreateStaffUserAsync(
