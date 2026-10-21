@@ -23,7 +23,7 @@ namespace ElectroStock.API.Controllers
     [Authorize(Roles= "Cashier,Admin")]
     [ApiConventionType(typeof(DefaultApiConventions))]
 
-    public class InvoicesController:ControllerBase
+    public class InvoiceController:ControllerBase
     {
         private readonly IInvoiceService _invoiceService;
         public InvoicesController(IInvoiceService invoiceService)

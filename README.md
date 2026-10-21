@@ -20,6 +20,43 @@ docker compose up --build -d
 # API: http://localhost:8080
 ```
 
+### Default Administrator Account
+
+The application automatically seeds an **Administrator account** on first run so the API can be explored locally:
+
+**Credentials:**
+
+- **Email**: `admin@gmail.com`
+- **Password**: `Admin@123`
+- **Role**: `Admin`
+
+> **Important:** These credentials are for local demonstration only. Replace the seed values and JWT configuration before using the application in a real environment.
+
+**Administrator capabilities:**
+
+- Create and manage staff accounts.
+- Activate and deactivate users.
+- Search and list users by ID, email, phone, or role.
+- Manage products, pricing, publishing, and discontinuation.
+- Receive stock and view stock movement history.
+- Create, confirm, and cancel reservations.
+- Create, update, and cancel invoices.
+
+## Preview
+
+![Swagger UI Overview](docs/Screenshots/swagger-overview.png)
+
+<details>
+<summary>📂 More screenshots (click to expand)</summary>
+
+### Reservations, Stock & Users
+![Reservations, Stock and User Endpoints](docs/Screenshots/swagger-reservation-stock-user.png)
+
+### Products & Invoices
+![Products and Invoice Endpoints](docs/Screenshots/swagger-product-invoices.png)
+
+</details>
+
 ## Table of Contents
 
 - [Project Highlights](#project-highlights)
@@ -27,6 +64,8 @@ docker compose up --build -d
 - [Technical Architecture](#technical-architecture)
 - [Core Features](#core-features)
 - [Technology Stack](#technology-stack)
+- [Known MVP Limitations](#known-mvp-limitations)
+- [Future Enhancements](#future-enhancements)
 - [Design Patterns and Principles](#design-patterns-and-principles)
 - [Project Structure](#project-structure)
 - [Security Implementation](#security-implementation)
@@ -36,9 +75,7 @@ docker compose up --build -d
 - [Docker and Containerization](#docker-and-containerization)
 - [Getting Started](#getting-started)
 - [Configuration](#configuration)
-- [Known MVP Limitations](#known-mvp-limitations)
-- [Future Enhancements](#future-enhancements)
-- [Author and Contact](#author-and-contact)
+- [Author & Contact](#author--contact)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
@@ -169,6 +206,31 @@ Reservations currently support one product per reservation as an MVP design choi
 | Integration testing | Testcontainers for SQL Server |
 | Containerization | Docker and Docker Compose |
 
+
+## Known MVP Limitations
+
+- Reservations currently contain one product rather than multiple reservation items.
+- There is no frontend application in this repository.
+- Guest customers are created through business workflows; there is no separate customer registration endpoint.
+- Reservation expiration processing is prepared at the domain level but does not currently require a background worker for the MVP.
+- Docker Compose is intended for local development and demonstration.
+- API-level HTTP integration tests are not currently included; integration tests focus on application services and persistence.
+- Pagination, filtering, and sorting are limited for collection endpoints.
+- Production-grade secret management, observability, and deployment orchestration are outside the project scope.
+
+## Future Enhancements
+
+- Add a background service for expired-reservation processing.
+- Add API-level integration tests for controllers, authorization, middleware, and routing.
+- Add optimistic concurrency handling for stock updates.
+- Add database constraints for identifiers such as serial numbers and IMEIs where required by business rules.
+- Add pagination and richer search/filter options.
+- Add refresh tokens and token revocation.
+- Add structured logging, health checks, and metrics.
+- Add a frontend client for warehouse, cashier, and administration workflows.
+- Add multi-company or tenant support if the domain expands beyond a single organization.
+
+
 ## Design Patterns and Principles
 
 The project applies the following patterns and principles in a practical portfolio-scale implementation:
@@ -183,6 +245,26 @@ The project applies the following patterns and principles in a practical portfol
 - **Options pattern:** Binds JWT and administrator seed settings from configuration.
 - **Strategy-like polymorphism:** Quantified and serialized products implement different stock behavior through overridden domain methods.
 - **TPH inheritance:** Represents related product and user types in shared database tables.
+
+## Key Design Decisions
+
+ElectroStock makes several deliberate trade-offs. The full reasoning is
+documented in [`docs/DECISIONS.md`](docs/DECISIONS.md) using the
+[ADR format](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions).
+
+| # | Decision | Core rationale |
+|---|----------|----------------|
+| 1 | **BCrypt over ASP.NET Core Identity** | cross-language standard, simpler for a JWT-only API. |
+| 2 | **Two DbContexts (App + Audit)** | Failure audit logs must survive transaction rollback. A second context gives a clean change tracker, so the rollback doesn't re-save rolled-back changes. |
+| 3 | **TPH for Products and Users** | Simpler schema, no joins. Trade-off: nullable subtype columns. |
+| 4 | **Asymmetric product creation** | Serialized products are created atomically with the first receipt (create + receive); quantified products are created as catalog entries and received later. |
+| 5 | **Integration tests for transactional flows** | Mocks cannot reproduce TPH mapping, transaction rollback, or real concurrency. 11 integration tests cover the flows where those bugs live. |
+
+
+See [`docs/DECISIONS.md`](docs/DECISIONS.md) for context, alternatives
+considered, and trade-offs for each decision, plus a list of
+[open questions](docs/DECISIONS.md#open-questions-future-adrs) that would
+become future ADRs.
 
 ## Project Structure
 
@@ -282,9 +364,18 @@ PUT   /api/User/change-password
 
 Use the Swagger UI for complete request and response schemas.
 
+
 ## Database Design
 
 The application uses SQL Server through Entity Framework Core.
+
+### Entity-Relationship Diagram
+
+![ElectroStock ERD](docs/Diagrams/erd.svg)
+
+> **Note:** Both `Products` and `Users` use **Table-Per-Hierarchy (TPH)** to store related subtypes in a single table:
+> - `Products` uses a `ProductType` discriminator to distinguish `QuantifiedProduct` from `SerializedProduct`.
+> - `Users` uses a `UserType` discriminator to distinguish `RegisteredUser` from `GuestUser`. Registered-only columns (`Email`, `PasswordHash`, `Status`) are `NULL` for guest rows.
 
 ### `AppDbContext`
 
@@ -329,8 +420,17 @@ Run the test project with:
 ```powershell
 dotnet test src/ElectroStock.Tests/ElectroStock.Tests.csproj
 ```
-
 Integration tests require Docker because they start a SQL Server container. Unit tests cover domain and application behavior without requiring the application containers.
+### Test Results
+
+**Unit Tests** — ~202 tests, fast, no Docker required:
+
+![Unit Test Results](docs/Screenshots/tests-unit.png)
+
+**Integration Tests** — ~11 tests against real SQL Server via Testcontainers:
+
+![Integration Test Results](docs/Screenshots/tests-integration.png)
+
 
 ## Docker and Containerization
 
@@ -397,32 +497,6 @@ dotnet run --project src/ElectroStock.Api/ElectroStock.Api.csproj
 https://localhost:7213/swagger
 ```
 
-or:
-
-```text
-http://localhost:5127/swagger
-```
-
-### Run with Docker Compose
-
-1. Create a root `.env` file.
-2. Add a valid SQL Server password:
-
-```text
-SA_PASSWORD=YourStrongPassword123!
-```
-
-3. Start the application:
-
-```powershell
-docker compose up --build
-```
-
-4. Open:
-
-```text
-http://localhost:8080/swagger
-```
 
 ## Configuration
 
@@ -455,37 +529,18 @@ AdminSeed__LastName
 
 For local development, use .NET User Secrets or a local ignored `.env` file. Never use development credentials or JWT keys for a real deployment.
 
-## Known MVP Limitations
 
-- Reservations currently contain one product rather than multiple reservation items.
-- There is no frontend application in this repository.
-- Guest customers are created through business workflows; there is no separate customer registration endpoint.
-- Reservation expiration processing is prepared at the domain level but does not currently require a background worker for the MVP.
-- Docker Compose is intended for local development and demonstration.
-- Swagger is enabled in Development mode.
-- API-level HTTP integration tests are not currently included; integration tests focus on application services and persistence.
-- Pagination, filtering, and sorting are limited for collection endpoints.
-- Production-grade secret management, observability, and deployment orchestration are outside the project scope.
+## Author & Contact
 
-## Future Enhancements
+**Ahmed Mostafa** — Junior .NET Backend Developer
 
-- Add a background service for expired-reservation processing.
-- Add API-level integration tests for controllers, authorization, middleware, and routing.
-- Add optimistic concurrency handling for stock updates.
-- Add database constraints for identifiers such as serial numbers and IMEIs where required by business rules.
-- Add pagination and richer search/filter options.
-- Add refresh tokens and token revocation.
-- Add structured logging, health checks, and metrics.
-- Add a frontend client for warehouse, cashier, and administration workflows.
-- Add multi-company or tenant support if the domain expands beyond a single organization.
-
-## Author and Contact
-
-Author and contact details can be added here for portfolio use.
+- **GitHub**: [github.com/AhmedMostafa79](https://github.com/AhmedMostafa79)
+- **LinkedIn**: [linkedin.com/in/ahmed-khater-profile](https://www.linkedin.com/in/ahmed-khater-332121259)
+- **Email**: ahmedkhater7779@gmail.com
 
 ## License
 
-No license has currently been specified for this repository.
+This project is licensed under the MIT License.
 
 ## Acknowledgments
 
