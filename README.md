@@ -541,7 +541,10 @@ For local development, use .NET User Secrets or a local ignored `.env` file. Nev
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0f18749c05b8d86f5bedf9d49c5646c4fbc38c5d
 
 ## Acknowledgments
 
