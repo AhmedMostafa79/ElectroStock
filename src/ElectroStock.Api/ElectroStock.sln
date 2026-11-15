@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectroStock.Api", "ElectroStock.Api.csproj", "{8B0E52B7-3406-466D-9BD9-DC8CA02F7706}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectroStock.Api", "ElectroStock.API.csproj", "{8B0E52B7-3406-466D-9BD9-DC8CA02F7706}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectroStock.Domain", "..\ElectroStock.Domain\ElectroStock.Domain.csproj", "{D6064A32-183E-466C-8D86-8464CB7FBC8A}"
 EndProject
