@@ -26,7 +26,7 @@ namespace ElectroStock.API.Controllers
     public class InvoiceController:ControllerBase
     {
         private readonly IInvoiceService _invoiceService;
-        public InvoicesController(IInvoiceService invoiceService)
+        public InvoiceController(IInvoiceService invoiceService)
         {
             _invoiceService = invoiceService;
         }
